@@ -1,42 +1,47 @@
 package SearchingAndSorting;
 
+import java.sql.SQLOutput;
+import java.util.Scanner;
 public class MergeSort {
-    public static int[] mergeSort(int []arr1,int []arr2){
-        int ans[]=new int[arr1.length+arr2.length];
-        int i=0;
-        int j=0;
-        int k=0;
-        while(i<arr1.length&&j<arr2.length){
-            if(arr1[i]<arr2[j]){
-                ans[k]=arr1[i];
+    public static int[] mergeSort(int []arr,int []brr){
+        int []result=new int[arr.length+ brr.length];
+        int i=0,j=0,k=0;
+        while(i< arr.length&&j< brr.length){
+            if(arr[i]<brr[j]){
+                result[k]=arr[i];
                 i++;
                 k++;
-            }
-            else {
-                ans[k]=arr2[j];
+            }else {
+                result[k]=brr[j];
                 j++;
                 k++;
             }
-            while(i<arr1.length){
-                ans[k]=arr1[i];
-                i++;
-                k++;
-            }
-            while(j<arr2.length){
-                ans[k]=arr1[j];
-                j++;
-                k++;
-            }
-        }
-        return ans;
 
-    }
-    public static void main(String[]args){
-        int arr1[]={1,3,5,7,9};
-        int arr2[]={0,2,4,6,8};
-        int ans[]=mergeSort(arr1,arr2);
-        for(int i=0;i<ans.length;i++){
-            System.out.print(ans[i]+" ");
         }
+        while (i<arr.length){
+            result[k]=arr[i];
+            i++;
+            k++;
+        }
+        while(j<brr.length){
+            result[k]=brr[j];
+            k++;
+            j++;
+        }
+        return result;
+    }
+
+    public static void printArray(int []arr){
+        for(int i=0;i<arr.length;i++)
+            System.out.print(arr[i]+ " ");
+        System.out.println();
+    }
+    public static void main(String []args){
+        int arr[]={9,8,5,1,2};
+        int brr[]={7,6,3,4};
+        printArray(arr);
+        printArray(brr);
+        int []res=mergeSort(arr,brr);
+        printArray(res);
     }
 }
